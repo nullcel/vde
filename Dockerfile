@@ -20,11 +20,11 @@ RUN python3 -m pip install virtualenv
 
 RUN python3 -m venv /env
 
-RUN /env/bin/pip install --no-cache-dir \
+RUN pip install --no-cache-dir \
     torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 \
     numpy pillow
 
-RUN /env/bin/pip install --no-cache-dir scikit-learn --index-url https://pypi.org/simple
+RUN pip install --no-cache-dir scikit-learn --index-url https://pypi.org/simple
 
 WORKDIR /app
 
@@ -32,4 +32,5 @@ COPY . /app
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python
 
-CMD ["python3", "main.py"]
+CMD ["sh", "-c", "pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 numpy pillow && python3 main.py"]
+

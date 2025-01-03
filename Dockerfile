@@ -4,13 +4,17 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     libgl1-mesa-glx \
+    python3-dev \
+    build-essential \
     && apt-get clean
 
-RUN ln -s /usr/bin/python3 /usr/bin/python
+RUN pip3 install --upgrade pip setuptools
 
 RUN pip3 install --no-cache-dir \
     torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 \
-    numpy scikit-learn pillow
+    numpy pillow
+
+RUN pip3 install --no-cache-dir scikit-learn
 
 WORKDIR /app
 COPY . /app

@@ -8,14 +8,15 @@ from sklearn.metrics.pairwise import cosine_similarity
 import pickle
 
 class ReverseImageSearch:
-    def __init__(self, embedding_file="embeddings.pkl"):
+    def __init__(self, samples_dir="samples", embedding_file="embeddings.pkl"):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model = models.resnet50(pretrained=True).to(self.device)
         self.model.eval()
-
         self.model = torch.nn.Sequential(*list(self.model.children())[:-1])
-
+        self.samples_dir = samples_dir
+        self.embedding_file = embedding_file
         self.embeddings = {}
+
         if os.path.exists(self.embedding_file):
             with open(self.embedding_file, "rb") as f:
                 self.embeddings = pickle.load(f)
@@ -37,6 +38,12 @@ class ReverseImageSearch:
         embedding = self._get_embedding(image_path)
         self.embeddings[image_path] = embedding
 
+    def add_samples(self):
+        for filename in os.listdir(self.samples_dir):
+            if filename.endswith(".jpg") or filename.endswith(".jpeg"):
+                image_path = os.path.join(self.samples_dir, filename)
+                self.add_image(image_path)
+
     def save_embeddings(self):
         with open(self.embedding_file, "wb") as f:
             pickle.dump(self.embeddings, f)
@@ -52,12 +59,9 @@ class ReverseImageSearch:
 
 if __name__ == "__main__":
     ris = ReverseImageSearch()
-
-    ris.add_image("image1.jpg")
-    ris.add_image("image2.jpg")
+    ris.add_samples()
     ris.save_embeddings()
-
-    results = ris.search("queryimage.jpg")
-    print("top results:")
+    results = ris.search("subject.jpg")
+    print("Top results:")
     for image_path, score in results:
-        print(f"image: {image_path}, similarity: {score}")
+        print(f"Image: {image_path}, Similarity: {score}")

@@ -8,11 +8,11 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     && apt-get clean
 
-RUN pip3 install --upgrade pip setuptools
-
 RUN pip3 install --no-cache-dir \
     torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 \
     numpy pillow
+
+RUN pip3 install --upgrade pip setuptools
 
 RUN pip3 install --no-cache-dir scikit-learn
 

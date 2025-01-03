@@ -30,4 +30,6 @@ WORKDIR /app
 
 COPY . /app
 
+RUN ln -sf /usr/bin/python3 /usr/bin/python
+
 CMD ["python3", "main.py"]

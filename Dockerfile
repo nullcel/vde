@@ -30,4 +30,4 @@ WORKDIR /app
 
 COPY . /app
 
-CMD ["/env/bin/python", "main.py"]
+CMD ["python3", "main.py"]

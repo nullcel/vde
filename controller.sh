@@ -12,11 +12,11 @@ while true; do
             ;;
         up)
             echo "Starting Docker containers with docker compose up..."
-            docker-compose up
+            docker compose up
             ;;
         build)
             echo "Starting Docker containers with docker compose up --build..."
-            docker-compose up --build
+            docker compose up --build
             ;;
         
         # Command to pull the latest changes from git and docker-compose
@@ -24,13 +24,13 @@ while true; do
             echo "Pulling latest changes from git..."
             git pull
             echo "Attempting to pull Docker images (if any are registry-based)..."
-            docker-compose pull || echo "Some images couldn't be pulled (normal for local builds)"
+            docker compose pull || echo "Some images couldn't be pulled (normal for local builds)"
             ;;
         
         # Command to bring down Docker containers
         down)
             echo "Stopping Docker containers with docker compose down..."
-            docker-compose down
+            docker compose down
             ;;
         
         # Command to exit the script

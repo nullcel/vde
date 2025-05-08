@@ -2,8 +2,10 @@
 Visual Deterministic Engine, intergrated using NVIDIA containers, and docker.
 
 ## first
-just run
-```./controller.sh```, following by ```up```
+place your subject in the `root` directory of your project and include the samples you want the engine to use for determining the similarity of the subject.
+
+after setting the project up, run
+```./controller.sh```, following by ```up```.
 
 ![image](https://raw.githubusercontent.com/nullcel/vde/refs/heads/main/docs/controllerscreen.jpg)
 

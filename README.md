@@ -35,6 +35,6 @@ echo \
 </p>
 
 <p align="center">
-  have an issue? [create](https://github.com/nullcel/vde/issues) an issue.
+  have an issue? <a href="https://github.com/nullcel/vde/issues">create</a> an issue.
 </p>
 

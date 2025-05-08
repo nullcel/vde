@@ -25,10 +25,16 @@ echo \
 ```
 
 ## third
-how does one understand what this wizardry does?
+
+<p align="center">
+  how does one understand what this wizardry does?
+</p>
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/nullcel/vde/refs/heads/main/docs/schema.png" width="350px" height="500px">
 </p>
 
-have an issue? [create](https://github.com/nullcel/vde/issues) an issue.
+<p align="center">
+  have an issue? [create](https://github.com/nullcel/vde/issues) an issue.
+</p>
+

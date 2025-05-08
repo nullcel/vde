@@ -11,4 +11,6 @@ services:
       - NVIDIA_DRIVER_CAPABILITIES=compute,utility
     volumes:
       - ./data:/app/data
+      - ./subject:/app/subject
+      - ./samples:/app/samples
     command: python main.py

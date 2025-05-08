@@ -27,10 +27,13 @@ RUN pip install --no-cache-dir \
 RUN pip install --no-cache-dir scikit-learn --index-url https://pypi.org/simple
 
 WORKDIR /app
-
 COPY . /app
+
+RUN mkdir -p /app/samples
+RUN mkdir -p /app/weights
+
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python
 
-CMD ["sh", "-c", "pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 numpy pillow && python3 main.py"]
+CMD ["python3", "main.py"]
 

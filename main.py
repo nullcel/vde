@@ -39,23 +39,51 @@ class ReverseImageSearch:
         self.embeddings[image_path] = embedding
 
     def add_samples(self):
+
+        print(f"[Debug] Looking for images in: {self.samples_dir}")
+
+        if not os.path.exists(self.samples_dir):
+            print(f"[Warning] Samples directory '{self.samples_dir}' does not exist. Creating it.")
+            os.makedirs(self.samples_dir)
+            return
+
+        added = False
         for filename in os.listdir(self.samples_dir):
             if filename.endswith(".jpg") or filename.endswith(".jpeg"):
                 image_path = os.path.join(self.samples_dir, filename)
+                print(f"[Debug] Adding image: {image_path}")  # Debug print for image processing
                 self.add_image(image_path)
+                added = True
+    
+        if not added:
+            print(f"[Warning] No images found in the samples directory: {self.samples_dir}")
 
     def save_embeddings(self):
         with open(self.embedding_file, "wb") as f:
             pickle.dump(self.embeddings, f)
 
     def search(self, query_image_path, top_k=5):
+        print(f"[Debug] Query image: {query_image_path}")
+    
+        if not os.path.exists(query_image_path):
+            print(f"[Error] Query image '{query_image_path}' not found.")
+            return
+
         query_embedding = self._get_embedding(query_image_path)
+        print(f"[Debug] Query embedding: {query_embedding[:10]}")  # Print the first 10 values for brevity
+
         scores = []
+        print(f"[Debug] Current embeddings: {self.embeddings}")  # Debug print for embeddings
+
         for image_path, embedding in self.embeddings.items():
             score = cosine_similarity([query_embedding], [embedding])[0][0]
             scores.append((image_path, score))
+
         scores = sorted(scores, key=lambda x: x[1], reverse=True)
+        print(f"[Debug] Scores: {scores[:top_k]}")  # Debug print for the top-k scores
+
         return scores[:top_k]
+
 
 if __name__ == "__main__":
     ris = ReverseImageSearch()

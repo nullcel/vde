@@ -23,3 +23,12 @@ echo \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
+
+## third
+how does one understand what this wizardry does?
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/nullcel/vde/refs/heads/main/docs/schema.png" width="350px" height="500px">
+</p>
+
+have an issue? [create](https://github.com/nullcel/vde/issues) an issue.

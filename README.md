@@ -1,9 +1,11 @@
 # vde
-Visual Deterministic Engine
+Visual Deterministic Engine, intergrated using NVIDIA containers, and docker.
 
 ## first
 just run
-```docker-compose up --build```
+```./controller.sh```, following by ```up```
+
+![image](https://raw.githubusercontent.com/nullcel/vde/refs/heads/main/docs/controllerscreen.jpg)
 
 ## second
 arch in setup.sh, for debian below
